@@ -1,9 +1,9 @@
 package models;
 
-import com.fasterxml.jackson.databind.JsonNode;
-import org.bson.types.ObjectId;
 import org.mongodb.morphia.annotations.Entity;
 import org.mongodb.morphia.annotations.Id;
+import com.fasterxml.jackson.databind.JsonNode;
+import org.bson.types.ObjectId;
 
 /**
  * Created by wr.ravelo on 23/09/2017.
