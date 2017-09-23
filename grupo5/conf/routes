@@ -15,3 +15,11 @@ GET     /assets/*file               controllers.Assets.versioned(path="/public",
 POST /prueba controllers.PruebaController.create()
 
 GET /pruebas controllers.PruebaController.find()
+
+GET /registros controllers.RegistroMedicionController.find()
+
+POST /registros controllers.RegistroMedicionController.create()
+
+GET /registros/:id controllers.RegistroMedicionController.findById(id:String)
+
+DELETE /registros/:id controllers.RegistroMedicionController.destroy(id:String)
