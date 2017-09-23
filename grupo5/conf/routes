@@ -12,10 +12,6 @@ GET     /message                    controllers.AsyncController.message
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)
 
-POST /prueba controllers.PruebaController.create()
-
-GET /pruebas controllers.PruebaController.find()
-
 GET /registros controllers.RegistroMedicionController.find()
 
 POST /registros controllers.RegistroMedicionController.create()
