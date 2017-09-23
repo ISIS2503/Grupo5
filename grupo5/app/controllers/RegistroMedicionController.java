@@ -2,9 +2,7 @@ package controllers;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.google.inject.Inject;
-import models.Prueba;
 import models.RegistroMedicion;
-import org.bson.types.ObjectId;
 import play.mvc.BodyParser;
 import play.mvc.Controller;
 import play.mvc.Result;
@@ -19,21 +17,37 @@ public class RegistroMedicionController extends Controller {
 
     @BodyParser.Of(BodyParser.Json.class)
     public Result create() {
-        JsonNode j = Controller.request().body().asJson();
-        RegistroMedicion medicion = RegistroMedicion.bind(j);
-        repository.save(medicion);
-        return ok(play.libs.Json.toJson(medicion));
+        try {
+            JsonNode j = Controller.request().body().asJson();
+            RegistroMedicion medicion = RegistroMedicion.bind(j);
+            repository.save(medicion);
+            return ok(play.libs.Json.toJson(medicion));
+        } catch(Exception e) {
+            return internalServerError( play.libs.Json.newObject().put("error", "No se pudo crear"));
+        }
     }
 
     public Result find() {
-        return ok(play.libs.Json.toJson(repository.find()));
+        try {
+            return ok(play.libs.Json.toJson(repository.find()));
+        } catch(Exception e) {
+            return notFound( play.libs.Json.newObject().put("error", "No se pudo encontrar las mediciones"));
+        }
     }
 
     public Result findById(String id) {
-        return ok(play.libs.Json.toJson(repository.findById(id)));
+        try {
+            return ok(play.libs.Json.toJson(repository.findById(id)));
+        } catch(Exception e) {
+            return notFound( play.libs.Json.newObject().put("error", "No se pudo encontrar la medicion"));
+        }
     }
 
     public Result destroy(String id) {
-        return ok(play.libs.Json.toJson(repository.destroy(id)));
+        try {
+            return ok(play.libs.Json.toJson(repository.destroy(id)));
+        } catch(Exception e) {
+            return notFound( play.libs.Json.newObject().put("error", "No se pudo encontrar la medicion"));
+        }
     }
 }
