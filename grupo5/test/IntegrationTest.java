@@ -106,11 +106,16 @@ public class IntegrationTest {
             assertTrue(jsonAns.get("unidad").asText().equals("C"));
 
             // Elimino una entidad
-            // TODO: Descomentar esto
-            //  Http.RequestBuilder x2 = fakeRequest(DELETE, "/registros/id");
-            //  Result t2 = route(x2).as("application/json");
-            //  assertTrue(t2.status() == 200);
-            //  assertTrue(t2.contentType().toString().equals("Optional[application/json]"));
+              Http.RequestBuilder x2 = fakeRequest(DELETE, "/registros/"+jsonAns.get("_id").asText());
+              Result t2 = route(x2).as("application/json");
+              assertTrue(t2.status() == 200);
+              assertTrue(t2.contentType().toString().equals("Optional[application/json]"));
+
+            // Busco la entidad borrada
+            Http.RequestBuilder x3 = fakeRequest(GET, "/registros/"+jsonAns.get("_id").asText());
+            Result t3 = route(x3).as("application/json");
+            assertTrue(t3.status() == 404);
+            assertTrue(t3.contentType().toString().equals("Optional[application/json]"));
         });
     }
 
@@ -138,15 +143,16 @@ public class IntegrationTest {
             assertTrue(jsonAns.get("tipo").asText().equals("Temp"));
             assertTrue(jsonAns.get("unidad").asText().equals("C"));
 
-            System.out.println(jsonAns.toString());
-           // ObjectId juan = new ObjectId(jsonAns.get("id").asText());
-          //  System.out.println(juan);
-            // Busco una entidad
-            // TODO: Descomentar esto
-            //  Http.RequestBuilder x2 = fakeRequest(GET, "/registros/id");
-            //  Result t2 = route(x2).as("application/json");
-            //  assertTrue(t2.status() == 200);
-            //  assertTrue(t2.contentType().toString().equals("Optional[application/json]"));
+            // Busco la entidad creada
+            Http.RequestBuilder x2 = fakeRequest(GET, "/registros/"+jsonAns.get("_id").asText());
+            Result t2 = route(x2).as("application/json");
+            assertTrue(t2.status() == 200);
+            assertTrue(t2.contentType().toString().equals("Optional[application/json]"));
+
+            JsonNode jsonAns1 = play.libs.Json.parse(contentAsString(t2));
+            assertTrue(jsonAns1.get("valor").asDouble() == 465.3);
+            assertTrue(jsonAns1.get("tipo").asText().equals("Temp"));
+            assertTrue(jsonAns1.get("unidad").asText().equals("C"));
         });
     }
 }

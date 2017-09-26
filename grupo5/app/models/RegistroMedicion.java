@@ -1,6 +1,8 @@
 package models;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 import org.bson.types.ObjectId;
 import org.mongodb.morphia.annotations.Entity;
 import org.mongodb.morphia.annotations.Id;
@@ -12,6 +14,7 @@ import org.mongodb.morphia.annotations.Id;
 public class RegistroMedicion {
 
     @Id
+    @JsonSerialize(using = ToStringSerializer.class)
     private ObjectId _id;
 
     private double valor;
