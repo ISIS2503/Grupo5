@@ -13,7 +13,7 @@ public class Alerta{
     @Id
     private ObjectId _id;
     private Integer tipo;
-    private MicroControlador microControlador;
+//    private MicroControlador microControlador;
 
 
 
@@ -21,28 +21,24 @@ public class Alerta{
 
     }
 
-    public Alerta(ObjectId _id, Integer  tipo, MicroControlador microControlador) {
+    public Alerta(ObjectId _id, Integer  tipo) {
         this._id = _id;
         this.tipo = tipo;
-        this.microControlador = microControlador;
+//        this.microControlador = microControlador;
     }
 
-    public Alerta( Integer tipo, MicroControlador microControlador) {
-        this.tipo = tipo;
-        this.microControlador = microControlador;
-    }
 
     public Alerta( Integer tipo) {
         this.tipo = tipo;
     }
 
-    public MicroControlador getMicroControlador() {
-        return microControlador;
-    }
-
-    public void setMicroControlador(MicroControlador microControlador) {
-        this.microControlador = microControlador;
-    }
+//    public MicroControlador getMicroControlador() {
+//        return microControlador;
+//    }
+//
+//    public void setMicroControlador(MicroControlador microControlador) {
+//        this.microControlador = microControlador;
+//    }
 
     public ObjectId get_id() {
         return _id;
