@@ -5,17 +5,15 @@ import org.mongodb.morphia.annotations.Id;
 import com.fasterxml.jackson.databind.JsonNode;
 import org.bson.types.ObjectId;
 
+import java.util.List;
+
 
 @Entity(value = "MicroControlador")
 public class MicroControlador{
 
     @Id
     private ObjectId _id;
-
-
-    @OneToMany(mappedBy = "microControlador")
     private List<Alerta> alertas;
-    
 
     public MicroControlador() {
     }
@@ -30,7 +28,7 @@ public class MicroControlador{
         this.alertas = alertas;
     }
 
-    public List<Alertas> getAlertas() {
+    public List<Alerta> getAlertas() {
         return alertas;
     }
 
@@ -46,7 +44,10 @@ public class MicroControlador{
         this._id = _id;
     }
 
+
+
     public static MicroControlador bind(JsonNode j) {
+
 
         MicroControlador MicroControlador = new MicroControlador();
         return MicroControlador;

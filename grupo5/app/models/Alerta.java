@@ -5,38 +5,34 @@ import org.mongodb.morphia.annotations.Id;
 import com.fasterxml.jackson.databind.JsonNode;
 import org.bson.types.ObjectId;
 
+import java.util.Date;
+
 @Entity(value = "Alerta")
 public class Alerta{
 
     @Id
     private ObjectId _id;
     private Integer tipo;
-    private Date fecha ;
-
-
-
-    @ManyToOne(mappedBy = "Alerta")
     private MicroControlador microControlador;
 
-    public Alerta() {
+
+
+     public Alerta() {
 
     }
 
-    public Alerta(ObjectId _id, Integer  tipo, Date fecha, MicroControlador microControlador) {
+    public Alerta(ObjectId _id, Integer  tipo, MicroControlador microControlador) {
         this._id = _id;
-        this.fecha = fecha;
         this.tipo = tipo;
         this.microControlador = microControlador;
     }
 
-    public Alerta(Date fecha, Integer tipo, MicroControlador microControlador) {
-        this.fecha = fecha;
+    public Alerta( Integer tipo, MicroControlador microControlador) {
         this.tipo = tipo;
-        this.MicroControlador = microControlador;
+        this.microControlador = microControlador;
     }
 
-    public Alerta(Date fecha, Integer tipo) {
-        this.fecha = fecha;
+    public Alerta( Integer tipo) {
         this.tipo = tipo;
     }
 
@@ -56,15 +52,6 @@ public class Alerta{
         this._id = _id;
     }
 
-    public Date getDate() {
-        return fecha;
-    }
-
-    public void setDate(Date  fecha) {
-        this.fecha = fecha;
-    }
-
-
     public Integer getTipo() {
         return tipo;
     }
@@ -74,10 +61,10 @@ public class Alerta{
     }
 
     public static Alerta bind(JsonNode j) {
-        Date fecha = j.findPath("fecha").asText();
-        Integer tipo = j.findPath("tipo").asText();
+        Integer tipo = j.findPath("tipo").asInt();
 
-        Alerta alerta = new Alerta(fecha, tipo);
+        Alerta alerta = new Alerta(tipo);
         return alerta;
     }
+    //TODO: hacer el repositorio luego el controller y luego modificar los routes y ya despues test
 }
