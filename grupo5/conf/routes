@@ -64,3 +64,21 @@ POST /niveles controllers.NivelController.create()
 GET /niveles/:id controllers.NivelController.findById(id:String)
 
 DELETE /niveles/:id controllers.NivelController.destroy(id:String)
+
+
+GET /actuadores controllers.ActuadorController.find()
+
+POST /actuadores controllers.ActuadorController.create()
+
+GET /actuadores/:id controllers.ActuadorController.findById(id:String)
+
+DELETE /actuadores/:id controllers.ActuadorController.destroy(id:String)
+
+
+GET /areafisicas controllers.AreaFisicaController.find()
+
+POST /areafisicas controllers.AreaFisicaController.create()
+
+GET /areafisicas/:id controllers.AreaFisicaController.findById(id:String)
+
+DELETE /areafisicas/:id controllers.AreaFisicaController.destroy(id:String)
