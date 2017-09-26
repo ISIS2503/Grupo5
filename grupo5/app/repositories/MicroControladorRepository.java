@@ -25,7 +25,13 @@ public class MicroControladorRepository {
         return microControler;
     }
 
+    public List<MicroControlador> find() {
+        List<MicroControlador> micros = morphia.
+                datastore().
+                createQuery(MicroControlador.class).asList();
 
+        return micros;
+    }
     public void save(MicroControlador microControler) {
         morphia.datastore().save(microControler);
     }
