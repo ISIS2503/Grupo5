@@ -5,7 +5,7 @@ import org.mongodb.morphia.annotations.Id;
 import com.fasterxml.jackson.databind.JsonNode;
 import org.bson.types.ObjectId;
 
-@Entity(value = "MinaSubterranea")
+//@Entity(value = "MinaSubterranea")
 public class MinaSubterranea{
 //
 //    @Id

@@ -13,28 +13,13 @@ public class MicroControlador{
 
     @Id
     private ObjectId _id;
-    private List<Alerta> alertas;
-
     public MicroControlador() {
     }
 
-    public MicroControlador(ObjectId _id, List<Alerta> alertas) {
+    public MicroControlador(ObjectId _id) {
         this._id = _id;
-        this.alertas = alertas;
     }
 
-
-    public MicroControlador(List<Alerta> alertas) {
-        this.alertas = alertas;
-    }
-
-    public List<Alerta> getAlertas() {
-        return alertas;
-    }
-
-    public void setAlertas(List<Alerta> alertas) {
-        this.alertas = alertas;
-    }
 
     public ObjectId get_id() {
         return _id;
@@ -47,8 +32,6 @@ public class MicroControlador{
 
 
     public static MicroControlador bind(JsonNode j) {
-
-
         MicroControlador MicroControlador = new MicroControlador();
         return MicroControlador;
     }
