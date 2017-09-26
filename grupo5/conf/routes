@@ -19,3 +19,48 @@ POST /registros controllers.RegistroMedicionController.create()
 GET /registros/:id controllers.RegistroMedicionController.findById(id:String)
 
 DELETE /registros/:id controllers.RegistroMedicionController.destroy(id:String)
+
+
+GET /alertas controllers.AlertaController.find()
+
+POST /alertas controllers.AlertaController.create()
+
+GET /alertas/:id controllers.AlertaController.findById(id:String)
+
+DELETE /alertas/:id controllers.AlertaController.destroy(id:String)
+
+
+GET /microCon controllers.MicroControladorController.find()
+
+POST /microCon controllers.MicroControladorController.create()
+
+GET /microCon/:id controllers.MicroControladorController.findById(id:String)
+
+DELETE /microCon/:id controllers.MicroControladorController.destroy(id:String)
+
+
+GET /usuarios controllers.UsuarioController.find()
+
+POST /usuarios controllers.UsuarioController.create()
+
+GET /usuarios/:id controllers.UsuarioController.findById(id:String)
+
+DELETE /usuarios/:id controllers.UsuarioController.destroy(id:String)
+
+
+GET /minas controllers.MinaSubterraneaController.find()
+
+POST /minas controllers.MinaSubterraneaController.create()
+
+GET /minas/:id controllers.MinaSubterraneaController.findById(id:String)
+
+DELETE /minas/:id controllers.MinaSubterraneaController.destroy(id:String)
+
+
+GET /niveles controllers.NivelController.find()
+
+POST /niveles controllers.NivelController.create()
+
+GET /niveles/:id controllers.NivelController.findById(id:String)
+
+DELETE /niveles/:id controllers.NivelController.destroy(id:String)
