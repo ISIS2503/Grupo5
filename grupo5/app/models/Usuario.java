@@ -14,26 +14,15 @@ public class Usuario{
     private String contrasena;
     private String tipo;
 
-    @ManyToOne(mappedBy = "usuario")
-    private MinaSubterranea minaSubterranea;
-
     public Usuario() {
 
     }
 
-    public Usuario(ObjectId _id, String nombre, String contrasena, String tipo, MinaSubterranea minaSubterranea) {
+    public Usuario(ObjectId _id, String nombre, String contrasena, String tipo) {
         this._id = _id;
         this.nombre = nombre;
         this.contrasena = contrasena;
         this.tipo = tipo;
-        this.minaSubterranea = minaSubterranea;
-    }
-
-    public Usuario(String nombre, String contrasena, String tipo, MinaSubterranea minaSubterranea) {
-        this.nombre = nombre;
-        this.contrasena = contrasena;
-        this.tipo = tipo;
-        this.minaSubterranea = minaSubterranea;
     }
 
     public Usuario(String nombre, String contrasena, String tipo) {
@@ -42,13 +31,6 @@ public class Usuario{
         this.tipo = tipo;
     }
 
-    public MinaSubterranea getMinaSubterranea() {
-        return minaSubterranea;
-    }
-
-    public void setMinaSubterranea(MinaSubterranea minaSubterranea) {
-        this.minaSubterranea = minaSubterranea;
-    }
 
     public ObjectId get_id() {
         return _id;

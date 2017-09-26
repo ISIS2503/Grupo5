@@ -13,46 +13,16 @@ public class MinaSubterranea{
 
     private String nombre;
 
-    @OneToMany(mappedBy = "minaSubterranea")
-    private List<Usuario> usuarios;
-
-    @OneToMany(mappedBy = "minaSubterranea")
-    private List<Nivel> niveles;
-
     public MinaSubterranea() {
     }
 
-    public MinaSubterranea(ObjectId _id, String nombre, List<Usuario> usuarios, List<Nivel> niveles) {
+    public MinaSubterranea(ObjectId _id, String nombre) {
         this._id = _id;
         this.nombre = nombre;
-        this.usuarios = usuarios;
-        this.niveles = niveles;
     }
 
     public MinaSubterranea(String nombre) {
         this.nombre = nombre;
-    }
-
-    public MinaSubterranea(String nombre, List<Usuario> usuarios, List<Nivel> niveles) {
-        this.nombre = nombre;
-        this.usuarios = usuarios;
-        this.niveles = niveles;
-    }
-
-    public List<Nivel> getNiveles() {
-        return niveles;
-    }
-
-    public void setNiveles(List<Nivel> niveles) {
-        this.niveles = niveles;
-    }
-
-    public List<Usuario> getUsuarios() {
-        return usuarios;
-    }
-
-    public void setUsuarios(List<Usuario> usuarios) {
-        this.usuarios = usuarios;
     }
 
     public ObjectId get_id() {

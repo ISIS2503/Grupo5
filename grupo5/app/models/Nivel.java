@@ -12,21 +12,12 @@ public class Nivel {
 
     private int numeroNivel;
 
-    @ManyToOne (mappedBy = "Nivel")
-    private MinaSubterranea minaSubterranea;
-
     public Nivel() {
     }
 
-    public Nivel(ObjectId _id, int numeroNivel, MinaSubterranea minaSubterranea) {
+    public Nivel(ObjectId _id, int numeroNivel) {
         this._id = _id;
         this.numeroNivel = numeroNivel;
-        this.minaSubterranea = minaSubterranea;
-    }
-
-    public Nivel(int numeroNivel, MinaSubterranea minaSubterranea) {
-        this.numeroNivel = numeroNivel;
-        this.minaSubterranea = minaSubterranea;
     }
 
     public Nivel(int numeroNivel) {
@@ -49,16 +40,8 @@ public class Nivel {
         this.numeroNivel = numeroNivel;
     }
 
-    public MinaSubterranea getMinaSubterranea() {
-        return minaSubterranea;
-    }
-
-    public void setMinaSubterranea(MinaSubterranea minaSubterranea) {
-        this.minaSubterranea = minaSubterranea;
-    }
-
     public static Nivel bind(JsonNode j) {
-        int numeroNivel = j.findPath("numeroNivel").asDouble();
+        int numeroNivel = j.findPath("numeroNivel").asInt();
         Nivel nivel = new Nivel(numeroNivel);
         return nivel;
     }
