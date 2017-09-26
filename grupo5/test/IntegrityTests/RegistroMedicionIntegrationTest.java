@@ -1,36 +1,14 @@
+package IntegrityTests;
+
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.google.common.collect.ImmutableMap;
-import com.google.inject.Guice;
-import com.google.inject.Inject;
-import com.mongodb.util.JSON;
-import controllers.RegistroMedicionController;
-import it.unifi.cerm.playmorphia.PlayMorphia;
-import models.RegistroMedicion;
-import org.bson.types.ObjectId;
 import org.junit.*;
-
-import play.api.ApplicationLoader;
-import play.api.Environment;
-import play.api.Play;
-import play.api.inject.guice.GuiceApplicationBuilder;
-import play.api.inject.guice.GuiceApplicationLoader;
-import play.api.libs.json.Json;
-import play.api.libs.json.Json$;
-import play.api.test.*;
-import play.db.Database;
-import play.db.Databases;
 import play.mvc.*;
-import play.test.*;
-import repositories.RegistroMedicionRepository;
-
-import java.util.HashMap;
-import java.util.Map;
-
 import static play.test.Helpers.*;
 import static org.junit.Assert.*;
 
-public class IntegrationTest {
+public class RegistroMedicionIntegrationTest {
 
     @Test
     public void testAddRegistroMedicion() {
