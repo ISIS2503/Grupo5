@@ -28,7 +28,7 @@ public class AreaFisica {
 
     }
 
-    public RegistroMedicion(String tipoArea) {
+    public AreaFisica(String tipoArea) {
         this.tipoArea = tipoArea;
 
     }
@@ -55,10 +55,10 @@ public class AreaFisica {
 
     // Helpers
 
-    public static Actuador bind(JsonNode j) {
-        String tipoArea= j.findPath("activo").asString();
+    public static AreaFisica bind(JsonNode j) {
+        String tipoArea= j.findPath("activo").asText();
 
-        RegistroMedicion medicion = new Actuador(tipoArea);
+        AreaFisica medicion = new AreaFisica(tipoArea);
         return medicion;
     }
 }

@@ -2,24 +2,15 @@ package controllers;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.google.inject.Inject;
+import models.Actuador;
 import models.VariableAmbiental;
 import play.mvc.BodyParser;
 import play.mvc.Controller;
 import play.mvc.Result;
+import repositories.ActuadorRepository;
 
 
-/**
- * This controller contains an action that demonstrates how to write
- * simple asynchronous code in a controller. It uses a timer to
- * asynchronously delay sending a response for 1 second.
- *
- * @param actorSystem We need the {@link ActorSystem}'s
- * {@link Scheduler} to run code after a delay.
- * @param exec We need a Java {@link Executor} to apply the result
- * of the {@link CompletableFuture} and a Scala
- * {@link ExecutionContext} so we can use the Akka {@link Scheduler}.
- * An {@link ExecutionContextExecutor} implements both interfaces.
- */
+
 
 public class ActuadorController extends Controller {
 

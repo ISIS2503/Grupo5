@@ -4,11 +4,12 @@ import com.google.inject.Inject;
 import it.unifi.cerm.playmorphia.PlayMorphia;
 import models.RegistroMedicion;
 import org.bson.types.ObjectId;
+import models.Actuador;
 
 import java.util.List;
 
 /**
- * Created by wr.ravelo on 23/09/2017.
+ * Created by dgguarin20 on 23/09/2017.
  */
 public class ActuadorRepository {
 
@@ -18,7 +19,7 @@ public class ActuadorRepository {
     public Actuador findById(String id) {
         Actuador medicion = morphia.
                 datastore().
-                createQuery(.class).
+                createQuery(Actuador.class).
                 field("_id").
                 equal(new ObjectId(id)).get();
         return medicion;
@@ -27,7 +28,7 @@ public class ActuadorRepository {
     public List<Actuador> find() {
         List<Actuador> mediciones = morphia.
                 datastore().
-                createQuery(RegistroMedicion.class).asList();
+                createQuery(Actuador.class).asList();
 
         return mediciones;
     }

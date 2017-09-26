@@ -6,7 +6,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import org.bson.types.ObjectId;
 
 /**
- * Created by wr.ravelo on 23/09/2017.
+ * Created by dgguarin20 on 23/09/2017.
  */
 @Entity(value = "Actuador") // Nombre de la coleccion de datos
 public class Actuador {
@@ -28,7 +28,7 @@ public class Actuador {
         this.ciclos = ciclos;
     }
 
-    public RegistroMedicion(Boolean activo,Integer ciclos) {
+    public Actuador(Boolean activo,Integer ciclos) {
         this.activo = activo;
         this.ciclos  = ciclos;
     }
@@ -43,7 +43,7 @@ public class Actuador {
         this._id = _id;
     }
 
-    public double getActivo() {
+    public Boolean getActivo() {
         return activo;
     }
 
@@ -56,15 +56,15 @@ public class Actuador {
     }
 
     public void setCiclo(Integer ciclo) {
-        this.ciclo = ciclo;
+        this.ciclos = ciclo;
     }
 
     // Helpers
 
     public static Actuador bind(JsonNode j) {
         Boolean activo = j.findPath("activo").asBoolean();
-        Integer ciclo = j.findPath("tipo").asInteger();
-        RegistroMedicion medicion = new Actuador(activo, ciclo);
+        Integer ciclo = j.findPath("tipo").asInt();
+         Actuador medicion = new Actuador(activo, ciclo);
         return medicion;
     }
 }
