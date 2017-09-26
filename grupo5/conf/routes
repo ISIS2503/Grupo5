@@ -37,3 +37,30 @@ POST /microCon controllers.MicroControladorController.create()
 GET /microCon/:id controllers.MicroControladorController.findById(id:String)
 
 DELETE /microCon/:id controllers.MicroControladorController.destroy(id:String)
+
+
+GET /usuarios controllers.UsuarioController.find()
+
+POST /usuarios controllers.UsuarioController.create()
+
+GET /usuarios/:id controllers.UsuarioController.findById(id:String)
+
+DELETE /usuarios/:id controllers.UsuarioController.destroy(id:String)
+
+
+GET /minas controllers.MinaSubterraneaController.find()
+
+POST /minas controllers.MinaSubterraneaController.create()
+
+GET /minas/:id controllers.MinaSubterraneaController.findById(id:String)
+
+DELETE /minas/:id controllers.MinaSubterraneaController.destroy(id:String)
+
+
+GET /niveles controllers.NivelController.find()
+
+POST /niveles controllers.NivelController.create()
+
+GET /niveles/:id controllers.NivelController.findById(id:String)
+
+DELETE /niveles/:id controllers.NivelController.destroy(id:String)
