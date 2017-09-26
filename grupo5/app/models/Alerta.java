@@ -62,5 +62,5 @@ public class Alerta{
         Alerta alerta = new Alerta(tipo);
         return alerta;
     }
-    //TODO: hacer el repositorio luego el controller y luego modificar los routes y ya despues test
+    //TODO: :) funciona intellij git?
 }
