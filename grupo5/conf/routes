@@ -12,6 +12,7 @@ GET     /message                    controllers.AsyncController.message
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)
 
+#registros
 GET /registros controllers.RegistroMedicionController.find()
 
 POST /registros controllers.RegistroMedicionController.create()
@@ -20,7 +21,16 @@ GET /registros/:id controllers.RegistroMedicionController.findById(id:String)
 
 DELETE /registros/:id controllers.RegistroMedicionController.destroy(id:String)
 
+#VariableAmbiental
+GET /variablesAmbientales controllers.VariableAmbientalController.find()
 
+POST /variablesAmbientales controllers.VariableAmbientalController.create()
+
+GET /variablesAmbientales/:id controllers.VariableAmbientalController.findById(id:String)
+
+DELETE /variablesAmbientales/:id controllers.VariableAmbientalController.destroy(id:String)
+
+#Alerta
 GET /alertas controllers.AlertaController.find()
 
 POST /alertas controllers.AlertaController.create()
@@ -64,3 +74,21 @@ POST /niveles controllers.NivelController.create()
 GET /niveles/:id controllers.NivelController.findById(id:String)
 
 DELETE /niveles/:id controllers.NivelController.destroy(id:String)
+
+
+GET /actuadores controllers.ActuadorController.find()
+
+POST /actuadores controllers.ActuadorController.create()
+
+GET /actuadores/:id controllers.ActuadorController.findById(id:String)
+
+DELETE /actuadores/:id controllers.ActuadorController.destroy(id:String)
+
+
+GET /areafisicas controllers.AreaFisicaController.find()
+
+POST /areafisicas controllers.AreaFisicaController.create()
+
+GET /areafisicas/:id controllers.AreaFisicaController.findById(id:String)
+
+DELETE /areafisicas/:id controllers.AreaFisicaController.destroy(id:String)
