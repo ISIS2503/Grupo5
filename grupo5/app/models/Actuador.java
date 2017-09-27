@@ -63,8 +63,8 @@ public class Actuador {
 
     public static Actuador bind(JsonNode j) {
         Boolean activo = j.findPath("activo").asBoolean();
-        Integer ciclo = j.findPath("tipo").asInt();
-         Actuador medicion = new Actuador(activo, ciclo);
+        Integer ciclos = j.findPath("ciclos").asInt();
+         Actuador medicion = new Actuador(activo, ciclos);
         return medicion;
     }
 }
