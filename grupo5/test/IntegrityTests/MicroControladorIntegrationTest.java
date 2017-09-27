@@ -3,6 +3,7 @@ package IntegrityTests;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.google.common.collect.ImmutableMap;
+import org.junit.After;
 import org.junit.Test;
 import play.mvc.Http;
 import play.mvc.Result;
@@ -11,6 +12,12 @@ import static org.junit.Assert.assertTrue;
 import static play.test.Helpers.*;
 
 public class MicroControladorIntegrationTest {
+
+    @After
+    public void cleanDB()
+    {
+
+    }
 
     @Test
     public void testAddMicrocontrolador() {

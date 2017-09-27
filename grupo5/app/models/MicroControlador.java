@@ -1,5 +1,7 @@
 package models;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 import org.mongodb.morphia.annotations.Entity;
 import org.mongodb.morphia.annotations.Id;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -12,6 +14,8 @@ import java.util.List;
 public class MicroControlador{
 
     @Id
+    @JsonSerialize(using = ToStringSerializer.class)
+
     private ObjectId _id;
     public MicroControlador() {
     }
