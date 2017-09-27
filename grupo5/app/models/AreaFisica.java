@@ -6,7 +6,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import org.bson.types.ObjectId;
 
 /**
- * Created by wr.ravelo on 23/09/2017.
+ * Created by dgguarin20 on 23/09/2017.
  */
 @Entity(value = "AreaFisica") // Nombre de la coleccion de datos
 public class AreaFisica {
@@ -56,7 +56,7 @@ public class AreaFisica {
     // Helpers
 
     public static AreaFisica bind(JsonNode j) {
-        String tipoArea= j.findPath("activo").asText();
+        String tipoArea= j.findPath("tipoArea").asText();
 
         AreaFisica medicion = new AreaFisica(tipoArea);
         return medicion;
