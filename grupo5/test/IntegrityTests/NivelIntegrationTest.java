@@ -17,7 +17,7 @@ import static play.test.Helpers.route;
  */
 public class NivelIntegrationTest {
     @Test
-    public void testAddRegistroMedicion() {
+    public void testAddNivel() {
         running(testServer(3333, fakeApplication(inMemoryDatabase("test", ImmutableMap.of("MODE", "MYSQL")))), HTMLUNIT, browser -> {
             // Hago GET vacio de la base de datos
             Http.RequestBuilder x = fakeRequest(GET, "/niveles");
@@ -66,7 +66,7 @@ public class NivelIntegrationTest {
     }
 
     @Test
-    public void testRemoveRegistroMedicion() {
+    public void testRemoveNivel() {
         running(testServer(3333, fakeApplication(inMemoryDatabase("test", ImmutableMap.of("MODE", "MYSQL")))), HTMLUNIT, browser -> {
             // Hago GET base de datos actual
             Http.RequestBuilder x = fakeRequest(GET, "/niveles");
@@ -104,7 +104,7 @@ public class NivelIntegrationTest {
     }
 
     @Test
-    public void testGetByIdRegistroMedicion() {
+    public void testGetByIdNivel() {
         running(testServer(3333, fakeApplication(inMemoryDatabase("test", ImmutableMap.of("MODE", "MYSQL")))), HTMLUNIT, browser -> {
             // Hago GET vacio de la base de datos
             Http.RequestBuilder x = fakeRequest(GET, "/niveles");

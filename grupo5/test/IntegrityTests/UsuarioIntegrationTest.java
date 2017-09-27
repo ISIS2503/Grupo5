@@ -17,7 +17,7 @@ import static play.test.Helpers.route;
  */
 public class UsuarioIntegrationTest {
     @Test
-    public void testAddRegistroMedicion() {
+    public void testAddUsuario() {
         running(testServer(3333, fakeApplication(inMemoryDatabase("test", ImmutableMap.of("MODE", "MYSQL")))), HTMLUNIT, browser -> {
             // Hago GET vacio de la base de datos
             Http.RequestBuilder x = fakeRequest(GET, "/usuarios");
@@ -66,7 +66,7 @@ public class UsuarioIntegrationTest {
     }
 
     @Test
-    public void testRemoveRegistroMedicion() {
+    public void testRemoveUsuario() {
         running(testServer(3333, fakeApplication(inMemoryDatabase("test", ImmutableMap.of("MODE", "MYSQL")))), HTMLUNIT, browser -> {
             // Hago GET base de datos actual
             Http.RequestBuilder x = fakeRequest(GET, "/usuarios");
@@ -104,7 +104,7 @@ public class UsuarioIntegrationTest {
     }
 
     @Test
-    public void testGetByIdRegistroMedicion() {
+    public void testGetByIdUsuario() {
         running(testServer(3333, fakeApplication(inMemoryDatabase("test", ImmutableMap.of("MODE", "MYSQL")))), HTMLUNIT, browser -> {
             // Hago GET vacio de la base de datos
             Http.RequestBuilder x = fakeRequest(GET, "/usuarios");
