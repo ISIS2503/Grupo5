@@ -62,5 +62,5 @@ public class Alerta{
         Alerta alerta = new Alerta(tipo);
         return alerta;
     }
-    //TODO: :) funciona intellij git?
+
 }
