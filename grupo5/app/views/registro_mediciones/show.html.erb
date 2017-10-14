@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Valor:</strong>
+  <%= @registro_medicion.valor %>
+</p>
+
+<p>
+  <strong>Tipo:</strong>
+  <%= @registro_medicion.tipo %>
+</p>
+
+<p>
+  <strong>Unidad:</strong>
+  <%= @registro_medicion.unidad %>
+</p>
+
+<%= link_to 'Edit', edit_registro_medicion_path(@registro_medicion) %> |
+<%= link_to 'Back', registro_mediciones_path %>

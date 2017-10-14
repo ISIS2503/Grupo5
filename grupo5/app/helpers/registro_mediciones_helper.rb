@@ -1,0 +1,2 @@
+module RegistroMedicionesHelper
+end
