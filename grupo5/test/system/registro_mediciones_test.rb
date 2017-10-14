@@ -1,9 +1,9 @@
 require "application_system_test_case"
 
-class RegistroMedicionsTest < ApplicationSystemTestCase
+class Api::RegistroMedicionsTest < ApplicationSystemTestCase
   # test "visiting the index" do
-  #   visit registro_mediciones_url
+  #   visit api_registro_mediciones_url
   #
-  #   assert_selector "h1", text: "RegistroMedicion"
+  #   assert_selector "h1", text: "Api::RegistroMedicion"
   # end
 end

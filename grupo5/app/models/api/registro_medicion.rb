@@ -1,4 +1,4 @@
-class RegistroMedicion
+class Api::RegistroMedicion
   include Mongoid::Document
   field :valor, type: Float
   field :tipo, type: String

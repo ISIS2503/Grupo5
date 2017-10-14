@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class RegistroMedicionTest < ActiveSupport::TestCase
+class Api::RegistroMedicionTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end
