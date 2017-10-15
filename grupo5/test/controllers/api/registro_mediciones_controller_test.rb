@@ -2,16 +2,19 @@ require 'test_helper'
 
 class Api::RegistroMedicionesControllerTest < ActionDispatch::IntegrationTest
   setup do
+    # Crear objetos para prueba.
     @registro_medicion1 = Api::RegistroMedicion.new(tipo: "Temperatura", unidad: "C", valor: 28)
     @registro_medicion2 = Api::RegistroMedicion.new(tipo: "Lux", unidad: "lux", valor: 12)
   end
 
   test "should get index" do
+    # Deberia dar todos los datos existente sin error.
     get api_registro_mediciones_url
     assert_response :success
   end
 
   test "should create api_registro_medicion" do
+    # Deberia crear objeto si vienen los datos correctos.
     assert_difference('Api::RegistroMedicion.count') do
       post api_registro_mediciones_url, params: { registro_medicion: { tipo: @registro_medicion1.tipo, unidad: @registro_medicion1.unidad, valor: @registro_medicion1.valor } }
     end
@@ -23,6 +26,7 @@ class Api::RegistroMedicionesControllerTest < ActionDispatch::IntegrationTest
     assert_equal "C", json_response['unidad']
     assert_equal 28, json_response['valor']
 
+    # No deberia guardar con datos faltantes.
     post api_registro_mediciones_url, params: { registro_medicion: { tipo: nil, unidad: @registro_medicion1.unidad, valor: @registro_medicion1.valor } }
     assert_response :unprocessable_entity
 
@@ -34,6 +38,7 @@ class Api::RegistroMedicionesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should show api_registro_medicion" do
+    # Si se crea objeto deberia ser posible poder buscarlo.
     assert_difference('Api::RegistroMedicion.count') do
       post api_registro_mediciones_url, params: { registro_medicion: { tipo: @registro_medicion2.tipo, unidad: @registro_medicion2.unidad, valor: @registro_medicion2.valor } }
     end
@@ -54,6 +59,7 @@ class Api::RegistroMedicionesControllerTest < ActionDispatch::IntegrationTest
 
 
   test "should destroy api_registro_medicion" do
+    # Si se crea objeto deberia ser posible poder eliminarlo.
     assert_difference('Api::RegistroMedicion.count') do
       post api_registro_mediciones_url, params: { registro_medicion: { tipo: @registro_medicion1.tipo, unidad: @registro_medicion1.unidad, valor: @registro_medicion1.valor } }
     end
