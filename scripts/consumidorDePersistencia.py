@@ -6,7 +6,7 @@ from kafka.errors import KafkaError
 
 producer = KafkaProducer(bootstrap_servers=['localhost:8090'])
 
-url = 'http://localhost:9000/registros'
+url = 'http://localhost:3000/api/registro_mediciones'
 
 response = requests.get(url)
 
