@@ -9,4 +9,6 @@ class Api::VariableAmbiental
   field :variacionDiaria, type: Float
   field :precision, type: Float
   
+
+  has_many :registro_medicion, :class_name => 'Api::RegistroMedicion'
 end

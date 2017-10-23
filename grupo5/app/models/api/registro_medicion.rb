@@ -9,4 +9,6 @@ class Api::RegistroMedicion
   validates :valor, presence: true
   validates :tipo, presence: true
   validates :unidad, presence: true
+
+  belongs_to :variable_ambiental, :class_name => 'Api::VariableAmbiental'
 end
