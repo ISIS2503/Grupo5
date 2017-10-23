@@ -4,8 +4,7 @@ class Api::RegistroMedicionesController < ApplicationController
   # GET /api/registro_mediciones
   # GET /api/registro_mediciones.json
   def index
-    #Api::RegistroMedicionesHelper.delay(run_at: 1.minutes.from_now).send_email
-
+    #Api::RegistroMedicionesHelper.delay(run_at: 60.minutes.from_now).send_email
     render json: Api::RegistroMedicion.all, status: :ok
   end
 
