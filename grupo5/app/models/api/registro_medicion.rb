@@ -7,5 +7,5 @@ class Api::RegistroMedicion
   validates :valor, presence: true
 
   belongs_to :variable_ambiental, :class_name => 'Api::VariableAmbiental'
-  belongs_to :microcontroladores, :class_name => 'Api::Microcontrolador'
+  belongs_to :microcontrolador, :class_name => 'Api::Microcontrolador'
 end

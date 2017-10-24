@@ -1,6 +1,7 @@
 class Api::Alert
   include Mongoid::Document
-  #field :fecha, type: Date
+  include Mongoid::Timestamps
+  
   field :tipo, type: Integer
   field :mensaje, type: String
 
