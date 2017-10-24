@@ -4,6 +4,6 @@ class Api::Microcontrolador
   field :area, type: Integer
 
   has_many :alerts, :class_name => 'Api::Alert'
-  has_many :actuadors, :class_name => 'Api::Actuador'
+  has_many :actuadores, :class_name => 'Api::Actuador'
   has_many :registros_medicion, :class_name => 'Api::RegistroMedicion'
 end

@@ -17,9 +17,14 @@ class Api::RegistroMedicionesController < ApplicationController
   # POST /api/registro_mediciones
   # POST /api/registro_mediciones.json
   def create
-    @registro_medicion = Api::RegistroMedicion.new(registro_medicion_params)
+    puts params.to_json
 
-    if @registro_medicion.save
+    @registro_medicion = Api::RegistroMedicion.new(registro_medicion_params)
+    @registro_medicion.microcontrolador = Api::Microcontrolador.find_or_create_by(nivel: params[:nivel], area: params[:area])
+    #TODO Mande que tipo de variable ambiental es
+    @registro_medicion.variable_ambiental = Api::VariableAmbiental.last
+
+    if Api::RegistroMedicionesHelper.verify(@registro_medicion, params[:promedio]) && @registro_medicion.save
       render json: @registro_medicion.to_json, status: :ok
     else
       render :json => { :mssg => 'Hubo un error creando el registro medicion.' }, status: :unprocessable_entity

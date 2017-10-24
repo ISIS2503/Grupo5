@@ -10,11 +10,11 @@ def create_register(valor, promedio, nivel, area)
 
   payload = {
     "registro_medicion": {
-      "valor": valor,
-      "promedio": promedio,
-      "nivel": nivel,
-      "area": area
-    }
+      "valor": valor
+    },
+    "promedio": promedio,
+    "nivel": nivel,
+    "area": area
   }
 
   http = Net::HTTP.new(uri.host, uri.port)
