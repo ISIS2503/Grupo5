@@ -11,9 +11,9 @@ def create_register(valor, promedio, nivel, area)
   payload = {
     "registro_medicion": {
       "valor": valor,
-      "promedio": promedio
+      "promedio": promedio,
       "nivel": nivel,
-      "arae": area
+      "area": area
     }
   }
 
@@ -22,10 +22,10 @@ def create_register(valor, promedio, nivel, area)
   request.body = payload.to_json
 
   response = http.request(request)
-  puts "#{response.code} #{tipo}"
+  puts "#{response.code} #{valor}"
 end
 
-client = MQTT::Client.connect(:host => '172.24.42.47', :port => 8083 )
+client = MQTT::Client.connect(:host => '172.24.42.32', :port => 8083 )
 client.subscribe( 'registros' )
 
 client.get do |topic,message|
@@ -39,9 +39,9 @@ client.get do |topic,message|
   area = json['Area']
 
   create_register(json['Temperature']['Value'], json['Temperature']['Promedio'], nivel, area)
-  create_register(json['Sound']['Value'], json['Sound']['Promedio'], nivel, area))
-  create_register(json['Monoxide']['Value'], json['Monoxide']['Promedio'], nivel, area))
-  create_register(json['Lux']['Value'], json['Lux']['Promedio'], nivel, area))
+  create_register(json['Sound']['Value'], json['Sound']['Promedio'], nivel, area)
+  create_register(json['Monoxide']['Value'], json['Monoxide']['Promedio'], nivel, area)
+  create_register(json['Lux']['Value'], json['Lux']['Promedio'], nivel, area)
   # TODO Mandar el place
 end
 
