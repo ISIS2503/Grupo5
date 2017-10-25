@@ -4,7 +4,6 @@ class Api::RegistroMedicionesController < ApplicationController
   # GET /api/registro_mediciones
   # GET /api/registro_mediciones.json
   def index
-    #Api::RegistroMedicionesHelper.delay(run_at: 60.minutes.from_now).send_email
     render json: Api::RegistroMedicion.all, status: :ok
   end
 
@@ -17,14 +16,13 @@ class Api::RegistroMedicionesController < ApplicationController
   # POST /api/registro_mediciones
   # POST /api/registro_mediciones.json
   def create
-    puts params.to_json
-
     @registro_medicion = Api::RegistroMedicion.new(registro_medicion_params)
     @registro_medicion.microcontrolador = Api::Microcontrolador.find_or_create_by(nivel: params[:nivel], area: params[:area])
     #TODO Mande que tipo de variable ambiental es
-    @registro_medicion.variable_ambiental = Api::VariableAmbiental.last
 
-    if Api::RegistroMedicionesHelper.verify(@registro_medicion, params[:promedio]) && @registro_medicion.save
+    @registro_medicion.variable_ambiental = Api::VariableAmbiental.where(tipo: params[:tipo]).first
+
+    if @registro_medicion.save && Api::RegistroMedicionesHelper.verify(@registro_medicion, params[:promedio])
       render json: @registro_medicion.to_json, status: :ok
     else
       render :json => { :mssg => 'Hubo un error creando el registro medicion.' }, status: :unprocessable_entity
@@ -43,6 +41,6 @@ class Api::RegistroMedicionesController < ApplicationController
     end
 
     def registro_medicion_params
-      params.require(:registro_medicion).permit(:valor, :tipo, :unidad)
+      params.require(:registro_medicion).permit(:valor)
     end
 end

@@ -36,8 +36,8 @@ module Grupo5
       :address   => 'smtp.sendgrid.net',
       :port      => '587',
       :domain    => 'sendgrid.com',
-      :user_name => 'ravelinx',
-      :password  => 'arquisoft123',
+      :user_name => ENV['USER_SEND'],
+      :password  => ENV['USER_PASS'],
       :authentication => 'plain',
       :enable_starttls_auto => true }
     end

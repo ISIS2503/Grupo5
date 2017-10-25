@@ -4,7 +4,7 @@ require 'json'
 require 'net/http'
 require 'uri'
 
-def create_register(valor, promedio, nivel, area)
+def create_register(valor, promedio, nivel, area, tipo)
   uri = URI.parse('http://localhost:3000/api/registro_mediciones')
   header = {'Content-Type': 'application/json'}
 
@@ -14,7 +14,8 @@ def create_register(valor, promedio, nivel, area)
     },
     "promedio": promedio,
     "nivel": nivel,
-    "area": area
+    "area": area,
+    "tipo": tipo
   }
 
   http = Net::HTTP.new(uri.host, uri.port)
@@ -38,10 +39,10 @@ client.get do |topic,message|
   nivel = json['Nivel']
   area = json['Area']
 
-  create_register(json['Temperature']['Value'], json['Temperature']['Promedio'], nivel, area)
-  create_register(json['Sound']['Value'], json['Sound']['Promedio'], nivel, area)
-  create_register(json['Monoxide']['Value'], json['Monoxide']['Promedio'], nivel, area)
-  create_register(json['Lux']['Value'], json['Lux']['Promedio'], nivel, area)
+  create_register(json['Temperature']['Value'], json['Temperature']['Promedio'], nivel, area, "Temperature")
+  create_register(json['Sound']['Value'], json['Sound']['Promedio'], nivel, area, "Sound")
+  create_register(json['Monoxide']['Value'], json['Monoxide']['Promedio'], nivel, area, "Monoxide")
+  create_register(json['Lux']['Value'], json['Lux']['Promedio'], nivel, area, "Lux")
   # TODO Mandar el place
 end
 
