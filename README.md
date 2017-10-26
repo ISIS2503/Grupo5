@@ -20,12 +20,6 @@ varVariableAmbiental4 = Api::VariableAmbiental.new(tipo:"Lux", valorMaximo:2000.
 
 varUsuario = Api::Usuario.new(nombre:"Alejandro", correo:"a.echeverrir@uniandes.edu.co", contrasena:"password1234" )
 
-
-
-
-
-Relaciones: 
-
 varActuador.microcontrolador = varMicrocontrolador
 varActuador.variable_ambiental = varVariableAmbiental1
 
@@ -33,12 +27,6 @@ varAlerta.microcontrolador = varMicrocontrolador
 
 varRegistroMedicion.variable_ambiental = varVariableAmbiental1
 varRegistroMedicion.microcontrolador =  varMicrocontrolador
-
-
-
-
-
-Saves: 
 
 varVariableAmbiental1.save
 varVariableAmbiental2.save
