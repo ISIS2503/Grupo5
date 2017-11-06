@@ -55,4 +55,6 @@ Rails.application.configure do
     new_path = "#{env['SCRIPT_NAME']}#{OmniAuth.config.path_prefix}/failure?message=#{message_key}&error_description=#{error_description}"
     Rack::Response.new(['302 Moved'], 302, 'Location' => new_path).finish
   }
+
+  config.cache_store = :memory_store
 end
