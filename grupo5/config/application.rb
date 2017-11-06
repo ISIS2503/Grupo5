@@ -36,8 +36,8 @@ module Grupo5
       :address   => 'smtp.sendgrid.net',
       :port      => '587',
       :domain    => 'sendgrid.com',
-      :user_name => ENV['user'],
-      :password  => ENV['pass'],
+      :user_name => Rails.application.secrets.sendgrid_user,
+      :password  => Rails.application.secrets.sendgrid_password,
       :authentication => 'plain',
       :enable_starttls_auto => true }
     end

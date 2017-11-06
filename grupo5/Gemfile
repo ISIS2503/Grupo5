@@ -52,3 +52,6 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'mongoid'
 gem 'delayed_job_mongoid'
+gem 'omniauth'
+gem 'omniauth-auth0'
+gem 'dotenv-rails', require: 'dotenv/rails-now', group: [:development, :test]

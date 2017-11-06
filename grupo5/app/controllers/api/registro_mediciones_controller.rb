@@ -1,4 +1,5 @@
 class Api::RegistroMedicionesController < ApplicationController
+  include Secured
   before_action :set_registro_medicion, only: [:show, :destroy]
 
   # GET /api/registro_mediciones
