@@ -1,4 +1,10 @@
 module Auth0Helper
+  module Constants
+    SYSO = 'SYSO'
+    SUPERVISOR = 'Supervisor'
+    SERVICE = 'Service'
+  end
+
   private
   # Is the user signed in?
   # @return [Boolean]

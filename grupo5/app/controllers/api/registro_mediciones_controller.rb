@@ -1,7 +1,7 @@
 class Api::RegistroMedicionesController < ApplicationController
   before_action :authenticate_user!
   before_action do |c|
-    authorize_user!(['Supervisor', 'Service', 'SYSO'])
+    authorize_user!([Constants::SUPERVISOR, Constants::SERVICE , Constants::SYSO ])
   end
 
   before_action :set_registro_medicion, only: [:show, :destroy]
