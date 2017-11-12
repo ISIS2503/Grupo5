@@ -25,7 +25,13 @@ module Auth0Helper
       complete_token = request.headers['HTTP_AUTHORIZATION']
       jwt_token = complete_token.split('Bearer')[1].strip
       decoded_token = JWT.decode jwt_token, nil, false
-      @current_user = { roles: ['Service'] }
+      type = decoded_token[0]["gty"]
+
+      if type == 'client-credentials'
+        @current_user = { roles: ['Service'] }
+      else
+        render :json => { :mssg => 'No tiene privilegios para ver la información' }, status: :unauthorized
+      end
     else
       render :json => { :mssg => 'No tiene privilegios para ver la información' }, status: :unauthorized
     end

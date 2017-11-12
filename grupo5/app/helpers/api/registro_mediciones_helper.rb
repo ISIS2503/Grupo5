@@ -17,8 +17,7 @@ module Api::RegistroMedicionesHelper
       self.cambiar_estado_de_actuadores_a(1, medicion)
       puts "Se prendieron los actuadores"
 
-      # (run_at: 1.minutes.from_now)
-      self.delay.verify_actuador_off(medicion.microcontrolador.actuadores.where(variable_ambiental: medicion.variable_ambiental).to_a, medicion)
+      self.delay(run_at: 60.minutes.from_now).verify_actuador_off(medicion.microcontrolador.actuadores.where(variable_ambiental: medicion.variable_ambiental).to_a, medicion)
 
       return false
     else
