@@ -8,19 +8,25 @@ module Auth0Helper
 
   # Set the @current_user or redirect to public page
   def authenticate_user!
+
     # Redirect to page that has the login here
     if user_signed_in?
       @current_user = session[:userinfo]
-      namespace = 'https://arquisoft201720-wrravelo:auth0:com/app_metadata'
 
+      namespace = 'https://arquisoft201720-wrravelo:auth0:com/app_metadata'
       @current_user[:roles] = session[:userinfo][:extra][:raw_info][namespace][:roles]
+    elsif request.headers['HTTP_AUTHORIZATION']
+      complete_token = request.headers['HTTP_AUTHORIZATION']
+      jwt_token = complete_token.split('Bearer')[1].strip
+      decoded_token = JWT.decode jwt_token, nil, false
+      @current_user = { roles: ['Service'] }
     else
       redirect_to home_login_path
     end
   end
 
-  def authorize_user!(role)
-    if !@current_user[:roles].include? role
+  def authorize_user!(roles)
+    if !@current_user || (@current_user[:roles] & roles).empty?
       render :json => { :mssg => 'No tiene privilegios para ver la información' }, status: :unauthorized
     end
   end

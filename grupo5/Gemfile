@@ -55,3 +55,4 @@ gem 'delayed_job_mongoid'
 gem 'omniauth'
 gem 'omniauth-auth0'
 gem 'dotenv-rails', require: 'dotenv/rails-now', group: [:development, :test]
+gem 'jwt'
