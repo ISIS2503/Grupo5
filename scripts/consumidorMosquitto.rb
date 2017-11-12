@@ -38,9 +38,15 @@ def create_register(token, valor, promedio, nivel, area, tipo)
   puts "#{response.code} #{valor}"
 end
 
-
 token = get_auth0_token()
-client = MQTT::Client.connect(:host => '172.24.42.32', :port => 8083 )
+client = MQTT::Client.connect(
+:host => 'localhost',
+:port => 8883 ,
+:ssl => true,
+:username => 'microcontrolador',
+:password => 'Isis2503.'
+)
+
 client.subscribe( 'registros' )
 
 client.get do |topic,message|
