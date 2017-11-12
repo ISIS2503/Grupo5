@@ -1,9 +1,8 @@
 class Api::MicrocontroladorController < ApplicationController
 
-def index
-	render json: Api::Microcontrolador.all, status: :ok
-end
+	before_action :authenticate_user!
 
-
-
+	def index
+		render json: Api::Microcontrolador.all, status: :ok
+	end
 end

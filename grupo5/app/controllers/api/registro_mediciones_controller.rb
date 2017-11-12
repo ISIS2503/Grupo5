@@ -1,6 +1,11 @@
 class Api::RegistroMedicionesController < ApplicationController
   before_action :authenticate_user!
+  before_action do |c|
+    authorize_user!('Supervisor')
+  end
+
   before_action :set_registro_medicion, only: [:show, :destroy]
+
 
   # GET /api/registro_mediciones
   # GET /api/registro_mediciones.json

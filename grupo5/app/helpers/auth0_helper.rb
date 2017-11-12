@@ -11,8 +11,17 @@ module Auth0Helper
     # Redirect to page that has the login here
     if user_signed_in?
       @current_user = session[:userinfo]
+      namespace = 'https://arquisoft201720-wrravelo:auth0:com/app_metadata'
+
+      @current_user[:roles] = session[:userinfo][:extra][:raw_info][namespace][:roles]
     else
       redirect_to home_login_path
+    end
+  end
+
+  def authorize_user!(role)
+    if !@current_user[:roles].include? role
+      render :json => { :mssg => 'No tiene privilegios para ver la información' }, status: :unauthorized
     end
   end
 
