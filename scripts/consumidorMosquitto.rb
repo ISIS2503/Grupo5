@@ -1,12 +1,28 @@
 require 'rubygems'
 require 'mqtt'
 require 'json'
-require 'net/http'
-require 'uri'
+require 'httparty'
+require 'dotenv'
+Dotenv.load
 
-def create_register(valor, promedio, nivel, area, tipo)
-  uri = URI.parse('http://localhost:3000/api/registro_mediciones')
-  header = {'Content-Type': 'application/json'}
+def get_auth0_token()
+  payload = {
+      "client_id": ENV['CLIENT_ID'],
+      "client_secret": ENV['CLIENT_SECRET'],
+      "audience": ENV['AUDIENCE'],
+      "grant_type": ENV['GRANT_TYPE']
+  }
+
+  response = HTTParty.post("https://arquisoft201720-wrravelo.auth0.com/oauth/token",:body => payload.to_json,:headers => { 'Content-Type' => 'application/json' } )
+  token = response['access_token']
+  puts "Code: #{response.code} Token : #{token}"
+  return token
+end
+
+def create_register(token, valor, promedio, nivel, area, tipo)
+  uri = 'http://localhost:3000/api/registro_mediciones'
+  header_token = "Bearer #{token}"
+  header = {'Content-Type': 'application/json', 'Authorization': header_token}
 
   payload = {
     "registro_medicion": {
@@ -18,14 +34,12 @@ def create_register(valor, promedio, nivel, area, tipo)
     "tipo": tipo
   }
 
-  http = Net::HTTP.new(uri.host, uri.port)
-  request = Net::HTTP::Post.new(uri.request_uri, header)
-  request.body = payload.to_json
-
-  response = http.request(request)
+  response = HTTParty.post(uri,:body => payload.to_json,:headers => header )
   puts "#{response.code} #{valor}"
 end
 
+
+token = get_auth0_token()
 client = MQTT::Client.connect(:host => '172.24.42.32', :port => 8083 )
 client.subscribe( 'registros' )
 
@@ -39,10 +53,10 @@ client.get do |topic,message|
   nivel = json['Nivel']
   area = json['Area']
 
-  create_register(json['Temperature']['Value'], json['Temperature']['Promedio'], nivel, area, "Temperature")
-  create_register(json['Sound']['Value'], json['Sound']['Promedio'], nivel, area, "Sound")
-  create_register(json['Monoxide']['Value'], json['Monoxide']['Promedio'], nivel, area, "Monoxide")
-  create_register(json['Lux']['Value'], json['Lux']['Promedio'], nivel, area, "Lux")
+  create_register(token, json['Temperature']['Value'], json['Temperature']['Promedio'], nivel, area, "Temperature")
+  create_register(token, json['Sound']['Value'], json['Sound']['Promedio'], nivel, area, "Sound")
+  create_register(token, json['Monoxide']['Value'], json['Monoxide']['Promedio'], nivel, area, "Monoxide")
+  create_register(token, json['Lux']['Value'], json['Lux']['Promedio'], nivel, area, "Lux")
   # TODO Mandar el place
 end
 

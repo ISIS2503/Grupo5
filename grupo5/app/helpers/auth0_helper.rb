@@ -27,7 +27,7 @@ module Auth0Helper
       decoded_token = JWT.decode jwt_token, nil, false
       @current_user = { roles: ['Service'] }
     else
-      redirect_to home_login_path
+      render :json => { :mssg => 'No tiene privilegios para ver la información' }, status: :unauthorized
     end
   end
 
