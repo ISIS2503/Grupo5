@@ -3,43 +3,19 @@
         <nav class="col-sm-3 col-md-2 d-none d-sm-block bg-light sidebar">
           <ul class="nav nav-pills flex-column">
             <li class="nav-item">
-              <a class="nav-link active" href="#">Overview <span class="sr-only">(current)</span></a>
+              <%= link_to api_registro_mediciones_path, class: "nav-link active" do %>
+                General
+              <% end %>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Reports</a>
+              <%= link_to api_registro_mediciones_area_path, class: "nav-link" do %>
+                Reporte por area
+              <% end %>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Analytics</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Export</a>
-            </li>
-          </ul>
-
-          <ul class="nav nav-pills flex-column">
-            <li class="nav-item">
-              <a class="nav-link" href="#">Nav item</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Nav item again</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">One more nav</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Another nav item</a>
-            </li>
-          </ul>
-
-          <ul class="nav nav-pills flex-column">
-            <li class="nav-item">
-              <a class="nav-link" href="#">Nav item again</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">One more nav</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Another nav item</a>
+              <%= link_to api_registro_mediciones_nivel_path, class: "nav-link" do %>
+                Reporte por nivel
+              <% end %>
             </li>
           </ul>
         </nav>
@@ -48,29 +24,21 @@
           <h1>Dashboard</h1>
 
           <section class="row text-center placeholders">
-            <div class="col-6 col-sm-3 placeholder">
-              <img src="data:image/gif;base64,R0lGODlhAQABAIABAAJ12AAAACwAAAAAAQABAAACAkQBADs=" width="200" height="200" class="img-fluid rounded-circle" alt="Generic placeholder thumbnail">
-              <h4>Label</h4>
-              <div class="text-muted">Something else</div>
-            </div>
-            <div class="col-6 col-sm-3 placeholder">
-              <img src="data:image/gif;base64,R0lGODlhAQABAIABAADcgwAAACwAAAAAAQABAAACAkQBADs=" width="200" height="200" class="img-fluid rounded-circle" alt="Generic placeholder thumbnail">
-              <h4>Label</h4>
-              <span class="text-muted">Something else</span>
-            </div>
-            <div class="col-6 col-sm-3 placeholder">
-              <img src="data:image/gif;base64,R0lGODlhAQABAIABAAJ12AAAACwAAAAAAQABAAACAkQBADs=" width="200" height="200" class="img-fluid rounded-circle" alt="Generic placeholder thumbnail">
-              <h4>Label</h4>
-              <span class="text-muted">Something else</span>
-            </div>
-            <div class="col-6 col-sm-3 placeholder">
-              <img src="data:image/gif;base64,R0lGODlhAQABAIABAADcgwAAACwAAAAAAQABAAACAkQBADs=" width="200" height="200" class="img-fluid rounded-circle" alt="Generic placeholder thumbnail">
-              <h4>Label</h4>
-              <span class="text-muted">Something else</span>
-            </div>
+            <% Api::VariableAmbiental.all.each do |variable| %>
+              <div class="col-6 col-sm-3 placeholder">
+                <img src="data:image/gif;base64,R0lGODlhAQABAIABAAJ12AAAACwAAAAAAQABAAACAkQBADs=" width="200" height="200" class="img-fluid rounded-circle" alt="Generic placeholder thumbnail">
+                <h4><%= variable.tipo %></h4>
+                <div class="text-muted">Valor Maximo: <%= variable.valorMaximo %></div>
+                <div class="text-muted">Valor Minimo: <%= variable.valorMinimo %></div>
+                <div class="text-muted">Unidad: <%= variable.unidad %></div>
+                <div class="text-muted">Variación diaria: <%= variable.variacionDiaria %></div>
+                <div class="text-muted">Precision: <%= variable.precision %></div>
+                <div class="text-muted">Frecuencia: <%= variable.frecuencia %></div>
+              </div>
+            <% end %>
           </section>
 
-          <h2>Section title</h2>
+          <h2>Reporte Mediciones General</h2>
           <div class="table-responsive">
             <table class="table table-striped">
               <thead>

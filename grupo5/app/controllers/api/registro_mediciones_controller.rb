@@ -6,11 +6,16 @@ class Api::RegistroMedicionesController < ApplicationController
 
   before_action :set_registro_medicion, only: [:show, :destroy]
 
-
   # GET /api/registro_mediciones
   # GET /api/registro_mediciones.json
   def index
     #render json: Api::RegistroMedicion.all, status: :ok
+  end
+
+  def index_area
+  end
+
+  def index_nivel
   end
 
   # GET /api/registro_mediciones/1

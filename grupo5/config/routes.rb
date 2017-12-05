@@ -12,6 +12,9 @@ Rails.application.routes.draw do
     resources :alert, only: [:index]
     resources :usuario, only: [:index]
     resources :actuador, only: [:index]
+
+    get 'registro_mediciones/reporte/area' => "registro_mediciones#index_area", as: "registro_mediciones_area"
+    get 'registro_mediciones/reporte/nivel' => "registro_mediciones#index_nivel", as: "registro_mediciones_nivel"
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
