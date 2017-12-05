@@ -17,7 +17,7 @@ module Api::RegistroMedicionesHelper
       self.cambiar_estado_de_actuadores_a(1, medicion)
       puts "Se prendieron los actuadores"
 
-      self.delay(run_at: 60.minutes.from_now).verify_actuador_off(medicion.microcontrolador.actuadores.where(variable_ambiental: medicion.variable_ambiental).to_a, medicion)
+      self.delay(run_at: 1.minutes.from_now).verify_actuador_off(medicion.microcontrolador.actuadores.where(variable_ambiental: medicion.variable_ambiental).to_a, medicion)
 
       return false
     else
@@ -39,8 +39,14 @@ module Api::RegistroMedicionesHelper
     # Se manda alerta si esta fuera del tiempo estipulado
     if lastTimestamp && currentTimestamp > (lastTimestamp + 5*medicion.variable_ambiental.frecuencia) #segundos
       puts "Alerta Fuera de linea"
-      mensaje = "Tipo de alerta: Sensor fuera de línea\n\nEl microcontrolador identificado con el numero #{medicion.microcontrolador._id} contiene un sensor que se encuentra fuera de línea.\nNivel:#{medicion.microcontrolador.nivel}\nArea:#{medicion.microcontrolador.area}\nTipo de sensor:#{medicion.variable_ambiental.tipo}"
-      Api::RegistroMedicionesHelper.delay.send_email(mensaje, "Se presento alerta fuera de linea!")
+      emailToSend = EmailBuilder.build do |builder|
+        builder.set_subject("Se presento alerta fuera de linea!")
+        builder.set_body("Tipo de alerta: Sensor fuera de línea\n\nEl microcontrolador identificado con el numero #{medicion.microcontrolador._id} contiene un sensor que se encuentra fuera de línea.\nNivel:#{medicion.microcontrolador.nivel}\nArea:#{medicion.microcontrolador.area}\nTipo de sensor:#{medicion.variable_ambiental.tipo}")
+        builder.set_to("drummerwilliam@gmail.com")
+        builder.set_from("a.echeverrir@uniandes.edu.co")
+      end
+
+      Api::RegistroMedicionesHelper.delay.send_email(emailToSend)
       @alertLinea = Api::Alert.new(tipo: 0, mensaje: mensaje)
       @alertLinea.microcontrolador = medicion.microcontrolador
       @alertLinea.save
@@ -64,8 +70,14 @@ module Api::RegistroMedicionesHelper
     if siguePrendido
       # Mando alerta
       puts "Mandar alerta"
-      mensaje = "El actuador de identificado con el numero #{ineficiente._id} ubicado en el nivel #{ineficiente.microcontrolador.nivel} y área #{ineficiente.microcontrolador.area} no está teniendo efecto en la mitigación del riesgo ambiental."
-      Api::RegistroMedicionesHelper.delay.send_email(mensaje, "Se presento alerta actuador ineficiente!")
+      emailToSend = EmailBuilder.build do |builder|
+        builder.set_subject("Se presento alerta actuador ineficiente!")
+        builder.set_body("El actuador de identificado con el numero #{ineficiente._id} ubicado en el nivel #{ineficiente.microcontrolador.nivel} y área #{ineficiente.microcontrolador.area} no está teniendo efecto en la mitigación del riesgo ambiental.")
+        builder.set_to("drummerwilliam@gmail.com")
+        builder.set_from("a.echeverrir@uniandes.edu.co")
+      end
+
+      Api::RegistroMedicionesHelper.delay.send_email(emailToSend)
       @alertInf = Api::Alert.new(tipo: 2, mensaje: mensaje)
       @alertInf.microcontrolador = medicion.microcontrolador
       @alertInf.save
@@ -76,16 +88,15 @@ module Api::RegistroMedicionesHelper
   # Enviar Correos
   ###########################################################
 
-  def self.send_email(mensaje, asunto)
+  def self.send_email(buildedEmail)
     mail = Mail.deliver do
-      to 'drummerwilliam@gmail.com'
-      from 'a.echeverrir@uniandes.edu.co'
-      subject asunto
+      to buildedEmail.to
+      from buildedEmail.from
+      subject buildedEmail.subject
       text_part do
-        body mensaje
+        body buildedEmail.body
       end
     end
-
     puts "Enviado"
   end
 
