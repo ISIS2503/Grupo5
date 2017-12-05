@@ -5,6 +5,54 @@ require 'httparty'
 require 'dotenv'
 Dotenv.load
 
+###########################################
+################ Adapter ##################
+###########################################
+
+class Services
+  module Adapter
+    module Mqttadapter
+      def self.post(payload, url, headers)
+      end
+
+      def self.get(topicUrl, headers)
+        client = MQTT::Client.connect(headers)
+        client.subscribe( topicUrl )
+        return client
+      end
+    end
+
+    module Httpadapter
+      def self.post(payload, url, headers)
+        if headers
+          response = HTTParty.post(url,:body => payload.to_json,:headers => headers )
+          return response
+        else
+          response = HTTParty.post(url,:body => payload.to_json,:headers => { 'Content-Type' => 'application/json' } )
+          return response
+        end
+      end
+
+      def self.get(url, headers)
+      end
+    end
+  end
+
+  def adapter
+    return @adapter if @adapter
+    self.adapter = :Httpadapter
+    @adapter
+  end
+
+  def adapter=(adapter)
+    @adapter = Services::Adapter.const_get(adapter.to_s.capitalize)
+  end
+end
+
+###########################################
+################# Logic ###################
+###########################################
+
 def get_auth0_token()
   payload = {
       "client_id": ENV['CLIENT_ID'],
@@ -13,7 +61,11 @@ def get_auth0_token()
       "grant_type": ENV['GRANT_TYPE']
   }
 
-  response = HTTParty.post("https://arquisoft201720-wrravelo.auth0.com/oauth/token",:body => payload.to_json,:headers => { 'Content-Type' => 'application/json' } )
+  url = "https://arquisoft201720-wrravelo.auth0.com/oauth/token"
+  services = Services.new
+  services.adapter = :Httpadapter
+  response = services.adapter.post(payload, url, nil)
+
   token = response['access_token']
   puts "Code: #{response.code} Token : #{token}"
   return token
@@ -34,20 +86,25 @@ def create_register(token, valor, promedio, nivel, area, tipo)
     "tipo": tipo
   }
 
-  response = HTTParty.post(uri,:body => payload.to_json,:headers => header )
+  services = Services.new
+  services.adapter = :Httpadapter
+  response = services.adapter.post(payload, uri, header)
   puts "#{response.code} #{valor}"
 end
 
 token = get_auth0_token()
-client = MQTT::Client.connect(
-:host => 'localhost',
-:port => 8883 ,
-:ssl => true,
-:username => 'microcontrolador',
-:password => 'Isis2503.'
-)
 
-client.subscribe( 'registros' )
+headers = {
+  :host => 'localhost',
+  :port => 8883 ,
+  :ssl => true,
+  :username => 'microcontrolador',
+  :password => 'Isis2503.'
+}
+
+services = Services.new
+services.adapter = :Mqttadapter
+client = services.adapter.get('registros', headers)
 
 client.get do |topic,message|
   puts "-----------------------------------------"
