@@ -69,7 +69,11 @@ h1 {
 }
 
 div.pagination {
+  margin-top: 20px;
+  margin-bottom: 20px;
+
   a, em {
-    margin-left: 10px;
+    margin-left: 5px;
+    margin-right: 5px;
   }
 }
