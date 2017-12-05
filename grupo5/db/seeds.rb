@@ -42,3 +42,16 @@ varRegistroMedicion.save
 varAlerta.save
 varActuador.save
 varUsuario.save
+
+i = 0
+while i < 50 do
+  j = 0
+  while(j < 50) do
+    currentRegistro = Api::RegistroMedicion.new(valor: rand(1...30))
+    currentRegistro.variable_ambiental = Api::VariableAmbiental.all.sample
+    currentRegistro.microcontrolador =  varMicrocontrolador
+    currentRegistro.save
+    j+= 1
+  end
+  i+= 1
+end

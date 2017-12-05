@@ -67,3 +67,9 @@ h1 {
   padding-top: 1.5rem;
   padding-bottom: 1.5rem;
 }
+
+div.pagination {
+  a, em {
+    margin-left: 10px;
+  }
+}
