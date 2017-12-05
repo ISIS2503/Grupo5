@@ -10,7 +10,7 @@ class Api::RegistroMedicionesController < ApplicationController
   # GET /api/registro_mediciones
   # GET /api/registro_mediciones.json
   def index
-    render json: Api::RegistroMedicion.all, status: :ok
+    #render json: Api::RegistroMedicion.all, status: :ok
   end
 
   # GET /api/registro_mediciones/1

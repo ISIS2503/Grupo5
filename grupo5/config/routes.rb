@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   get "/home/logout" => "home#logout"
   get "/home/error" => "home#error"
 
-  namespace :api, defaults: {format: 'json'} do
+  namespace :api do
     resources :registro_mediciones, only: [:create, :index, :show, :destroy]
     resources :microcontrolador, only: [:index]
     resources :variable_ambiental, only: [:index, :create]
