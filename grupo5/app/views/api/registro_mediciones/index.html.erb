@@ -22,7 +22,6 @@
 
         <main role="main" class="col-sm-9 ml-sm-auto col-md-10 pt-3">
           <h1>Dashboard</h1>
-
           <section class="row text-center placeholders">
             <% Api::VariableAmbiental.all.each do |variable| %>
               <div class="col-6 col-sm-3 placeholder">
@@ -38,57 +37,34 @@
             <% end %>
           </section>
 
-          <h2>Reporte Mediciones General</h2>
+          <h2>Reporte Medicines Por Area</h2>
           <div class="table-responsive">
             <table class="table table-striped">
               <thead>
                 <tr>
-                  <th>#</th>
-                  <th>Header</th>
-                  <th>Header</th>
-                  <th>Header</th>
-                  <th>Header</th>
+                  <th>ID</th>
+                  <th>Valor</th>
+                  <th>Variable</th>
+                  <th>Area</th>
+                  <th>Nivel</th>
+                  <th>Fecha Medición</th>
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>1,001</td>
-                  <td>Lorem</td>
-                  <td>ipsum</td>
-                  <td>dolor</td>
-                  <td>sit</td>
-                </tr>
-                <tr>
-                  <td>1,002</td>
-                  <td>amet</td>
-                  <td>consectetur</td>
-                  <td>adipiscing</td>
-                  <td>elit</td>
-                </tr>
-                <tr>
-                  <td>1,003</td>
-                  <td>Integer</td>
-                  <td>nec</td>
-                  <td>odio</td>
-                  <td>Praesent</td>
-                </tr>
-                <tr>
-                  <td>1,003</td>
-                  <td>libero</td>
-                  <td>Sed</td>
-                  <td>cursus</td>
-                  <td>ante</td>
-                </tr>
-                <tr>
-                  <td>1,003</td>
-                  <td>libero</td>
-                  <td>Sed</td>
-                  <td>cursus</td>
-                  <td>ante</td>
-                </tr>
+                <% @registros.each do |registro| %>
+                  <tr>
+                    <td><%= registro.id %></td>
+                    <td><%= registro.valor %></td>
+                    <td><%= registro.variable_ambiental.tipo %></td>
+                    <td><%= registro.microcontrolador.area%></td>
+                    <td><%= registro.microcontrolador.nivel %></td>
+                    <td><%= registro.created_at %></td>
+                  </tr>
+                <% end %>
               </tbody>
             </table>
           </div>
+          <%= will_paginate @registros %>
         </main>
-      </div>
     </div>
+</div>

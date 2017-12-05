@@ -10,6 +10,7 @@ class Api::RegistroMedicionesController < ApplicationController
   # GET /api/registro_mediciones.json
   def index
     #render json: Api::RegistroMedicion.all, status: :ok
+    @registros = Api::RegistroMedicion.all.order("created_at DESC").paginate(page: params[:page], per_page: 10)
   end
 
   def index_area
