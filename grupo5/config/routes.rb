@@ -15,6 +15,7 @@ Rails.application.routes.draw do
 
     get 'registro_mediciones/reporte/area' => "registro_mediciones#index_area", as: "registro_mediciones_area"
     get 'registro_mediciones/reporte/nivel' => "registro_mediciones#index_nivel", as: "registro_mediciones_nivel"
+    get 'alert/area/:area/' => "alert#alerts_area", as: "alerts_area"
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 

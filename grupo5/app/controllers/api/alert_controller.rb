@@ -10,4 +10,8 @@ class Api::AlertController < ApplicationController
 		def index
     	#render json: Api::Alert.all, status: :ok
   	end
+
+		def alerts_area
+			@alerts = Api::Alert.where(:microcontrolador_id.in => Api::Microcontrolador.where(area: params[:area]).pluck(:id))			
+		end
 end

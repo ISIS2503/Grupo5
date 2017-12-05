@@ -15,25 +15,24 @@
       </ul>
     </nav>
     <main role="main" class="col-sm-9 ml-sm-auto col-md-10 pt-3">
-      <h2>Todas las areas cubiertas</h2>
+      <h2>Alertas en area <%= params[:area]%></h2>
       <div class="table-responsive">
         <table class="table table-striped">
           <thead>
             <tr>
+              <th>ID</th>
+              <th>Tipo</th>
               <th>Area</th>
+              <th>Nivel</th>
             </tr>
           </thead>
           <tbody>
-            <% Api::Microcontrolador.all.distinct(:area).each do |area| %>
+            <% @alerts.each do |alerta| %>
               <tr>
-                <td class="col-md-8">Area <%= area %></td>
-                <td>
-                  <%= link_to api_alerts_area_path(area), class: "btn btn-danger" do %>
-                    Ver alertas
-                  <% end %>
-                </td>
-                <td><button type="button" class="btn btn-dark">Ver actuadores</button></td>
-                <td><button type="button" class="btn btn-dark">Ver registros</button></td>
+                <td><%= alerta.id %></td>
+                <td><%= alerta.get_variable_type_as_string %></td>
+                <td><%= alerta.microcontrolador.area %></td>
+                <td><%= alerta.microcontrolador.nivel %></td>
               </tr>
             <% end %>
           </tbody>
