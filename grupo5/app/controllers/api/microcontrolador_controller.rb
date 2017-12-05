@@ -6,6 +6,6 @@ class Api::MicrocontroladorController < ApplicationController
 	end
 
 	def index
-		render json: Api::Microcontrolador.all, status: :ok
+		#render json: Api::Microcontrolador.all, status: :ok
 	end
 end
