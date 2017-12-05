@@ -9,9 +9,7 @@ module Api::RegistroMedicionesHelper
     puts "#{limiteInferior}"
     # Si esta fuera de los rangos se prenden los actuadores
     if medicion.valor < limiteInferior || medicion.valor > limiteSuperior
-      @alertRango = Api::Alert.new(tipo: 1, mensaje: "Alerta fuera de rango")
-      @alertRango.microcontrolador = medicion.microcontrolador
-      @alertRango.save
+      alert = AlertFactory.build(:FueraDeRango, medicion)
 
       puts "Alerta Fuera de rango"
       self.cambiar_estado_de_actuadores_a(1, medicion)
@@ -39,17 +37,17 @@ module Api::RegistroMedicionesHelper
     # Se manda alerta si esta fuera del tiempo estipulado
     if lastTimestamp && currentTimestamp > (lastTimestamp + 5*medicion.variable_ambiental.frecuencia) #segundos
       puts "Alerta Fuera de linea"
+
+      alert = AlertFactory.build(:FueraDeLinea, medicion)
+
       emailToSend = EmailBuilder.build do |builder|
-        builder.set_subject("Se presento alerta fuera de linea!")
+        builder.set_subject(alert.mensaje)
         builder.set_body("Tipo de alerta: Sensor fuera de línea\n\nEl microcontrolador identificado con el numero #{medicion.microcontrolador._id} contiene un sensor que se encuentra fuera de línea.\nNivel:#{medicion.microcontrolador.nivel}\nArea:#{medicion.microcontrolador.area}\nTipo de sensor:#{medicion.variable_ambiental.tipo}")
         builder.set_to("drummerwilliam@gmail.com")
         builder.set_from("a.echeverrir@uniandes.edu.co")
       end
 
       Api::RegistroMedicionesHelper.delay.send_email(emailToSend)
-      @alertLinea = Api::Alert.new(tipo: 0, mensaje: mensaje)
-      @alertLinea.microcontrolador = medicion.microcontrolador
-      @alertLinea.save
     end
   end
 
@@ -70,17 +68,17 @@ module Api::RegistroMedicionesHelper
     if siguePrendido
       # Mando alerta
       puts "Mandar alerta"
+
+      alert = AlertFactory.build(:ActuadorIneficiente, medicion)
+
       emailToSend = EmailBuilder.build do |builder|
-        builder.set_subject("Se presento alerta actuador ineficiente!")
+        builder.set_subject(alert.mensaje)
         builder.set_body("El actuador de identificado con el numero #{ineficiente._id} ubicado en el nivel #{ineficiente.microcontrolador.nivel} y área #{ineficiente.microcontrolador.area} no está teniendo efecto en la mitigación del riesgo ambiental.")
         builder.set_to("drummerwilliam@gmail.com")
         builder.set_from("a.echeverrir@uniandes.edu.co")
       end
 
       Api::RegistroMedicionesHelper.delay.send_email(emailToSend)
-      @alertInf = Api::Alert.new(tipo: 2, mensaje: mensaje)
-      @alertInf.microcontrolador = medicion.microcontrolador
-      @alertInf.save
     end
   end
 
