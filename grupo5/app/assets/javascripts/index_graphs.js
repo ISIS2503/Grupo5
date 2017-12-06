@@ -55,7 +55,7 @@ new Morris.Line({
 
   xkey: 'y',
   ykeys: ['Temperatura', 'Sonido', "Monoxido", "Luz"],
-  labels: ['Series A', 'Series B', 'Series C', 'Series D']
+  labels: ['Temperatura', 'Sonido', "Monoxido", "Luz"]
 });
 
 new Morris.Donut({
@@ -77,5 +77,5 @@ Morris.Area({
   data: group_data,
   xkey: 'y',
   ykeys: ['Temperatura', 'Sonido', "Monoxido", "Luz"],
-  labels: ['Series A', 'Series B', 'Series C', 'Series D']
+  labels: ['Temperatura', 'Sonido', "Monoxido", "Luz"]
 });
