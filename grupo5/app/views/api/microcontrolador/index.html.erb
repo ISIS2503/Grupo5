@@ -32,8 +32,16 @@
                     Ver alertas
                   <% end %>
                 </td>
-                <td><button type="button" class="btn btn-dark">Ver actuadores</button></td>
-                <td><button type="button" class="btn btn-dark">Ver registros</button></td>
+                <td>
+                  <%= link_to api_actuadores_area_path(area), class: "btn btn-dark" do %>
+                    Ver actuadores
+                  <% end %>
+                </td>
+                <td>
+                  <%= link_to api_registro_mediciones_area_more_path(area), class: "btn btn-dark" do %>
+                    Ver registros
+                  <% end %>
+                </td>
               </tr>
             <% end %>
           </tbody>

@@ -18,6 +18,7 @@ Rails.application.routes.draw do
     get 'registro_mediciones/reporte/area/:area' => "registro_mediciones#index_area_more", as: "registro_mediciones_area_more"
     get 'registro_mediciones/reporte/nivel/:nivel' => "registro_mediciones#index_nivel_more", as: "registro_mediciones_nivel_more"
     get 'alert/area/:area/' => "alert#alerts_area", as: "alerts_area"
+    get 'actuador/area/:area' => "actuador#actuadores_area", as: "actuadores_area"
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
