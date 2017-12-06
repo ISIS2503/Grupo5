@@ -1,0 +1,27 @@
+1. Ayudar a navegar las interfaces
+
+	- Menú de navegación a la izquierda: General, Reportes por Area/Nivel
+	- 1 nivel de profundidad en los menús (maximo 3)
+	- Nombres significativos de los menús 
+
+
+2. Mantener al usuario informado de su ubicación
+	
+	- Logo (DashBoard Grupo 5) para mantener informado al usuario informado 
+	  de si sigue en el contexto de la aplicación 
+	- Efectos en los items del menu: se hace un contraste de colores inverso
+	  en el tab del menu en el que el usuario se encuentra situado. 
+
+
+3. Paginación 
+
+	- Paginación para mejorar el tiempo de respuesta en el que el servidor 
+	  envia la información al usuario y ademas asi se logra evitar un scroll
+	  exesivamente largo
+	- Paginación del lado del servidor debido a que el volumen de informacion 
+	  es muy grande (crece a 2500 registros/segundo) y tomaria mucho tiempo 
+	  cargar y procesar toda esta información del lado del cliente
+
+
+
+	
