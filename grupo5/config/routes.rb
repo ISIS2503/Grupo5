@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  root 'api/registro_mediciones#index'
+
   get "/auth/oauth2/callback" => "auth0#callback"
   get "/auth/failure" => "auth0#failure"
   get "/home/login" => "home#login"
