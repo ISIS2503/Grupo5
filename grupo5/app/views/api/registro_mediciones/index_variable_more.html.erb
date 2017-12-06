@@ -8,7 +8,7 @@
           <% end %>
         </li>
         <li class="nav-item">
-          <%= link_to api_registro_mediciones_area_path, class: "nav-link active" do %>
+          <%= link_to api_registro_mediciones_area_path, class: "nav-link" do %>
             Reporte por area
           <% end %>
         </li>
@@ -18,7 +18,7 @@
           <% end %>
         </li>
         <li class="nav-item">
-          <%= link_to api_registro_mediciones_variable_path, class: "nav-link" do %>
+          <%= link_to api_registro_mediciones_variable_path, class: "nav-link active" do %>
             Reporte por variable
           <% end %>
         </li>
@@ -26,7 +26,7 @@
     </nav>
 
     <main role="main" class="col-sm-9 ml-sm-auto col-md-10 pt-3">
-      <h2>Todas Las Medicines del area <%= params[:area] %></h2>
+      <h2>Todas Las Medicines Del Nivel <%= params[:nivel] %></h2>
 
       <div class="table-responsive">
         <table class="table table-striped">
