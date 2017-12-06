@@ -6,13 +6,13 @@ Api::RegistroMedicion.delete_all
 Api::VariableAmbiental.delete_all
 Delayed::Job.delete_all
 
-varVariableAmbiental1 = Api::VariableAmbiental.new(tipo:"Temperatura", valorMaximo:27.0, valorMinimo:21.5 , unidad:"celsius", variacionDiaria:5.4 , precision:2.0 , frecuencia:60)
+varVariableAmbiental1 = Api::VariableAmbiental.new(tipo:"Temperature", valorMaximo:27.0, valorMinimo:21.5 , unidad:"celsius", variacionDiaria:5.4 , precision:2.0 , frecuencia:60)
 
-varVariableAmbiental2 = Api::VariableAmbiental.new(tipo:"Sonido", valorMaximo:85.0, valorMinimo:0.0 , unidad:"decibel", variacionDiaria:0.0 , precision:2.0 , frecuencia:120)
+varVariableAmbiental2 = Api::VariableAmbiental.new(tipo:"Sound", valorMaximo:85.0, valorMinimo:0.0 , unidad:"decibel", variacionDiaria:0.0 , precision:2.0 , frecuencia:120)
 
-varVariableAmbiental3 = Api::VariableAmbiental.new(tipo:"Monoxido", valorMaximo:100.0, valorMinimo:0.0 , unidad:"ppm", variacionDiaria:0.0 , precision:2.0 , frecuencia:60)
+varVariableAmbiental3 = Api::VariableAmbiental.new(tipo:"Monoxide", valorMaximo:100.0, valorMinimo:0.0 , unidad:"ppm", variacionDiaria:0.0 , precision:2.0 , frecuencia:60)
 
-varVariableAmbiental4 = Api::VariableAmbiental.new(tipo:"Luz", valorMaximo:2000.0, valorMinimo:100.0 , unidad:"lux", variacionDiaria:0.0 , precision:2.0 , frecuencia:120)
+varVariableAmbiental4 = Api::VariableAmbiental.new(tipo:"Lux", valorMaximo:2000.0, valorMinimo:100.0 , unidad:"lux", variacionDiaria:0.0 , precision:2.0 , frecuencia:120)
 
 varUsuario = Api::Usuario.new(nombre:"Alejandro", correo:"a.echeverrir@uniandes.edu.co", contrasena:"password1234" )
 
