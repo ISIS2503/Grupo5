@@ -11,6 +11,15 @@ class Api::RegistroMedicionesController < ApplicationController
   def index
     #render json: Api::RegistroMedicion.all, status: :ok
     @registros = Api::RegistroMedicion.all.order("created_at DESC").paginate(page: params[:page], per_page: 10)
+    gon.registros_general_temp = Api::RegistroMedicion.all.where(:variable_ambiental_id.in => Api::VariableAmbiental.where(tipo: "Temperatura").pluck(:id)).limit(100).to_a
+    gon.registros_general_son = Api::RegistroMedicion.all.where(:variable_ambiental_id.in => Api::VariableAmbiental.where(tipo: "Sonido").pluck(:id)).limit(100).to_a
+    gon.registros_general_mon = Api::RegistroMedicion.all.where(:variable_ambiental_id.in => Api::VariableAmbiental.where(tipo: "Monoxido").pluck(:id)).limit(100).to_a
+    gon.registros_general_luz = Api::RegistroMedicion.all.where(:variable_ambiental_id.in => Api::VariableAmbiental.where(tipo: "Luz").pluck(:id)).limit(100).to_a
+
+    gon.registros_general_temp_all = Api::RegistroMedicion.all.where(:variable_ambiental_id.in => Api::VariableAmbiental.where(tipo: "Temperatura").pluck(:id))
+    gon.registros_general_son_all = Api::RegistroMedicion.all.where(:variable_ambiental_id.in => Api::VariableAmbiental.where(tipo: "Sonido").pluck(:id))
+    gon.registros_general_mon_all = Api::RegistroMedicion.all.where(:variable_ambiental_id.in => Api::VariableAmbiental.where(tipo: "Monoxido").pluck(:id))
+    gon.registros_general_luz_all = Api::RegistroMedicion.all.where(:variable_ambiental_id.in => Api::VariableAmbiental.where(tipo: "Luz").pluck(:id))
   end
 
   def index_area

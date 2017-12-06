@@ -27,6 +27,13 @@
 
         <main role="main" class="col-sm-9 ml-sm-auto col-md-10 pt-3">
           <h1>Dashboard</h1>
+          <div id="general_line_bar" style="height: 250px;"></div>
+
+          <div class="row">
+            <div id="general_area_bar" style="height: 250px;" class="col-md-8"></div>
+            <div id="general_pie_bar" style="height: 250px;" class="col-md-4"></div>
+          </div>
+
           <section class="row text-center placeholders">
             <% Api::VariableAmbiental.all.each do |variable| %>
               <div class="col-6 col-sm-3 placeholder">
@@ -73,3 +80,4 @@
         </main>
     </div>
 </div>
+<%= javascript_include_tag "index_graphs.js" %>
