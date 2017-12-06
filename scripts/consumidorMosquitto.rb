@@ -116,10 +116,10 @@ client.get do |topic,message|
   nivel = json['Nivel']
   area = json['Area']
 
-  create_register(token, json['Temperature']['Value'], json['Temperature']['Promedio'], nivel, area, "Temperature")
-  create_register(token, json['Sound']['Value'], json['Sound']['Promedio'], nivel, area, "Sound")
-  create_register(token, json['Monoxide']['Value'], json['Monoxide']['Promedio'], nivel, area, "Monoxide")
-  create_register(token, json['Lux']['Value'], json['Lux']['Promedio'], nivel, area, "Lux")
+  create_register(token, json['Temperature']['Value'], json['Temperature']['Promedio'], nivel, area, "Temperatura")
+  create_register(token, json['Sound']['Value'], json['Sound']['Promedio'], nivel, area, "Sonido")
+  create_register(token, json['Monoxide']['Value'], json['Monoxide']['Promedio'], nivel, area, "Monoxido")
+  create_register(token, json['Lux']['Value'], json['Lux']['Promedio'], nivel, area, "Luz")
   # TODO Mandar el place
 end
 
