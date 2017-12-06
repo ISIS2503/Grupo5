@@ -2,7 +2,7 @@ class Api::VariableAmbientalController < ApplicationController
 
 	before_action :authenticate_user!
 	before_action do |c|
-		authorize_user!([Constants::SUPERVISOR, Constants::SERVICE , Constants::SYSO ])
+		authorize_user!([Constants::SUPERVISOR, Constants::SERVICE])
 	end
 
 	def index
