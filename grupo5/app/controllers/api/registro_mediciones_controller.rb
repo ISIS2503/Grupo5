@@ -16,7 +16,15 @@ class Api::RegistroMedicionesController < ApplicationController
   def index_area
   end
 
+  def index_area_more
+    @registros = Api::RegistroMedicion.where(:microcontrolador_id.in => Api::Microcontrolador.where(area: params[:area]).pluck(:id)).order("created_at DESC").paginate(page: params[:page], per_page: 5)
+  end
+
   def index_nivel
+  end
+
+  def index_nivel_more
+    @registros = Api::RegistroMedicion.where(:microcontrolador_id.in => Api::Microcontrolador.where(nivel: params[:nivel]).pluck(:id)).order("created_at DESC").paginate(page: params[:page], per_page: 5)
   end
 
   # GET /api/registro_mediciones/1
