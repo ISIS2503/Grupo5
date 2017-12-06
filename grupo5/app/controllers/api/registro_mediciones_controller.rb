@@ -27,6 +27,13 @@ class Api::RegistroMedicionesController < ApplicationController
     @registros = Api::RegistroMedicion.where(:microcontrolador_id.in => Api::Microcontrolador.where(nivel: params[:nivel]).pluck(:id)).order("created_at DESC").paginate(page: params[:page], per_page: 5)
   end
 
+  def index_variable
+  end
+
+  def index_variable_more
+    @registros = Api::RegistroMedicion.where(:variable_ambiental_id.in => Api::VariableAmbiental.where(id: params[:variable]).pluck(:id)).order("created_at DESC").paginate(page: params[:page], per_page: 5)
+  end
+
   # GET /api/registro_mediciones/1
   # GET /api/registro_mediciones/1.json
   def show

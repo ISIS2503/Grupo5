@@ -17,6 +17,8 @@ Rails.application.routes.draw do
     get 'registro_mediciones/reporte/nivel' => "registro_mediciones#index_nivel", as: "registro_mediciones_nivel"
     get 'registro_mediciones/reporte/area/:area' => "registro_mediciones#index_area_more", as: "registro_mediciones_area_more"
     get 'registro_mediciones/reporte/nivel/:nivel' => "registro_mediciones#index_nivel_more", as: "registro_mediciones_nivel_more"
+    get 'registro_mediciones/reporte/variable' => "registro_mediciones#index_variable", as: "registro_mediciones_variable"
+    get 'registro_mediciones/reporte/variable/:variable' => "registro_mediciones#index_variable_more", as: "registro_mediciones_variable_more"
     get 'alert/area/:area/' => "alert#alerts_area", as: "alerts_area"
     get 'actuador/area/:area' => "actuador#actuadores_area", as: "actuadores_area"
   end
