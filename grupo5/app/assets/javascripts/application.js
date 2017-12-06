@@ -17,7 +17,3 @@
 //= require raphael
 //= require morris
 //= require_tree .
-
-$(document).on('ready page:load', function () {
-  
-});
